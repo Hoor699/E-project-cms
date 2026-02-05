@@ -1,0 +1,122 @@
+/* =========================================
+    ELITE NAVY ENTERPRISE THEME
+   ========================================= */
+
+:root {
+    --bg-deep: #0f172a;           /* Main Deep Navy Background */
+    --sidebar-dark: #0b1120;      /* Darker Sidebar */
+    --hover-blue: #3b82f6;        /* Light/Bright Blue for Hover */
+    --card-navy: #1e293b;         /* Professional Navy for Cards */
+    --text-light: #f8fafc;
+    --text-muted: #94a3b8;
+    --border-navy: #334155;
+}
+
+/* 1. Global Page Style */
+body, .app-wrapper, .content-wrapper {
+    background-color: var(--bg-deep) !important;
+    color: var(--text-light) !important;
+    font-family: 'Inter', system-ui, sans-serif !important;
+    animation: none !important;
+}
+
+/* 2. Sidebar - Navy with Light Blue Hover */
+.app-sidebar {
+    background: var(--sidebar-dark) !important;
+    border-right: 1px solid var(--border-navy) !important;
+    box-shadow: 4px 0 15px rgba(0,0,0,0.2) !important;
+}
+
+.sidebar-brand {
+    background: rgba(0, 0, 0, 0.2) !important;
+    border-bottom: 1px solid var(--border-navy) !important;
+}
+
+.nav-sidebar .nav-link {
+    margin: 5px 15px !important;
+    border-radius: 8px !important;
+    color: var(--text-muted) !important;
+    transition: all 0.2s ease !important;
+}
+
+/* Sidebar Hover - Light Blue Effect */
+.nav-sidebar .nav-link:hover {
+    background: rgba(59, 130, 246, 0.15) !important; /* Light Blue Transparent */
+    color: var(--hover-blue) !important;
+}
+
+.nav-sidebar .nav-link.active {
+    background: var(--hover-blue) !important;
+    color: #ffffff !important;
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3) !important;
+}
+
+.nav-link i {
+    color: var(--hover-blue) !important;
+    margin-right: 10px;
+}
+
+.nav-link.active i {
+    color: #ffffff !important;
+}
+
+/* 3. Modern Navy Cards (No White Block) */
+.card {
+    background: var(--card-navy) !important;
+    border: 1px solid var(--border-navy) !important;
+    border-radius: 16px !important;
+    color: var(--text-light) !important;
+}
+
+.card-header {
+    border-bottom: 1px solid var(--border-navy) !important;
+}
+
+/* 4. Dashboard Stat Boxes (Fixed Color Issues) */
+/* Purana background white hata diya hai taaki Yellow/Green/Red chalein */
+.small-box {
+    border-radius: 15px !important;
+    color: #ffffff !important;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2) !important;
+    border: none !important;
+    transition: transform 0.3s ease !important;
+}
+
+.small-box:hover {
+    transform: translateY(-5px) !important;
+}
+
+.small-box h3 {
+    font-weight: 800 !important;
+    font-size: 2.2rem !important;
+}
+
+/* 5. Enterprise Table in Navy */
+.table {
+    color: var(--text-light) !important;
+}
+
+.table thead th {
+    background-color: rgba(255, 255, 255, 0.05) !important;
+    border-bottom: 2px solid var(--border-navy) !important;
+    color: var(--hover-blue) !important;
+}
+
+.form-control {
+    background: var(--card-navy) !important;
+    border: 1px solid var(--border-navy) !important;
+    color: white !important;
+    border-radius: 8px !important;
+}
+
+/* 6. Professional Scrollbar */
+::-webkit-scrollbar {
+    width: 6px;
+}
+::-webkit-scrollbar-track {
+    background: var(--bg-deep);
+}
+::-webkit-scrollbar-thumb {
+    background: var(--border-navy);
+    border-radius: 10px;
+}

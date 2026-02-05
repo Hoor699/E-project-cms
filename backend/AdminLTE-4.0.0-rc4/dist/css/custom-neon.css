@@ -1,0 +1,202 @@
+/* --- ADMINLTE NEON OVERRIDE --- */
+
+:root {
+  /* Existing Variables Override */
+  --bs-body-bg: #0b0e14 !important; /* Deep Dark Background */
+  --bs-body-color: #e0e0e0 !important;
+  --bs-primary: #00f2ff !important; /* Neon Cyan */
+  --bs-primary-rgb: 0, 242, 255 !important;
+  --lte-sidebar-width: 260px;
+  --neon-glow: 0 0 15px rgba(0, 242, 255, 0.5);
+  --neon-purple: #51e4ab;
+}
+
+/* 1. Full Page Background */
+body, .app-wrapper {
+  background: radial-gradient(circle at top right, #1a1f2c, #0b0e14) !important;
+}
+
+/* 2. Sidebar Neon Look (Targeting .app-sidebar from your file) */
+.app-sidebar {
+  background: rgba(15, 20, 28, 0.95) !important;
+  backdrop-filter: blur(10px);
+  border-right: 1px solid rgba(0, 242, 255, 0.2) !important;
+  box-shadow: 5px 0 15px rgba(0, 0, 0, 0.5);
+}
+
+.sidebar-brand {
+  border-bottom: 1px solid rgba(0, 242, 255, 0.1) !important;
+  background: linear-gradient(90deg, transparent, rgba(0, 242, 255, 0.05), transparent);
+}
+
+.nav-link i {
+  color: var(--neon-purple) !important;
+  filter: drop-shadow(0 0 5px var(--neon-purple));
+}
+
+.nav-link:hover {
+  background: rgba(0, 242, 255, 0.1) !important;
+  color: var(--bs-primary) !important;
+  border-left: 3px solid var(--bs-primary);
+}
+
+/* 3. Modern Neon Cards (Targeting .card from your file) */
+.card {
+  background: rgba(255, 255, 255, 0.03) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  border-radius: 15px !important;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  overflow: hidden;
+}
+
+.card:hover {
+  border-color: var(--bs-primary) !important;
+  box-shadow: 0 0 20px rgba(0, 242, 255, 0.2);
+  transform: scale(1.02);
+}
+
+.card-header {
+  background: rgba(0, 242, 255, 0.05) !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05) !important;
+}
+
+/* 4. Neon Buttons */
+.btn-primary {
+  background: transparent !important;
+  border: 1px solid var(--bs-primary) !important;
+  box-shadow: inset 0 0 10px rgba(0, 242, 255, 0.2), 0 0 10px rgba(0, 242, 255, 0.2);
+  color: var(--bs-primary) !important;
+  transition: 0.3s;
+}
+
+.btn-primary:hover {
+  background: var(--bs-primary) !important;
+  color: #000 !important;
+  box-shadow: 0 0 30px var(--bs-primary);
+}
+
+/* 5. Entrance Animation for Dashboard Elements */
+.content-wrapper .container-fluid > .row > div {
+  animation: neonFadeUp 0.8s ease backwards;
+}
+
+@keyframes neonFadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+    filter: blur(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
+
+/* 6. Custom Scrollbar for Neon Theme */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #0b0e14;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--neon-purple);
+  border-radius: 10px;
+}
+/* Graphs ke axes aur labels ko white karne ke liye */
+canvas, .chartjs-render-monitor {
+    filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.1));
+}
+
+/* Agar aap ApexCharts use kar rahe hain */
+.apexcharts-canvas text {
+    fill: #ffffff !important;
+    font-weight: 500;
+    text-shadow: 0 0 2px rgba(0,0,0,0.5);
+}
+
+.apexcharts-legend-text {
+    color: #ffffff !important;
+}
+
+.apexcharts-tooltip {
+    background: #1e293b !important;
+    color: #fff !important;
+    border: 1px solid var(--bs-primary) !important;
+}
+/* Map container background */
+.jvectormap-container {
+    background-color: transparent !important;
+}
+
+/* Map paths (Countries/Regions) */
+.jvectormap-region {
+    fill: #e2e8f0 !important; /* Light Greyish/White base */
+    stroke: #ffffff !important;
+    stroke-width: 0.5;
+}
+
+/* Hover state for Map */
+.jvectormap-region.jvectormap-element:hover {
+    fill: #00f2ff !important; /* Neon Cyan on hover */
+    filter: drop-shadow(0 0 10px #00f2ff);
+    cursor: pointer;
+}
+/* Main Card Styling */
+.card {
+    background: rgba(30, 41, 59, 0.7) !important; /* Semi-transparent dark blue */
+    backdrop-filter: blur(12px); /* Glass effect */
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    border-radius: 20px !important;
+    color: #ffffff !important;
+    margin-bottom: 1.5rem;
+}
+
+/* Card Header */
+.card-header {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05) !important;
+    background: transparent !important;
+    padding: 1.25rem;
+}
+
+.card-title {
+    color: #00f2ff !important; /* Neon Blue Title */
+    font-weight: 700 !important;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Small Boxes / Stats Cards */
+.small-box {
+    border-radius: 20px !important;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.small-box:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0, 242, 255, 0.2);
+}
+/* Card Fade-In Animation */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translate3d(0, 40px, 0);
+    }
+    to {
+        opacity: 1;
+        transform: translate3d(0, 0, 0);
+    }
+}
+
+.card {
+    animation: fadeInUp 0.8s ease-out both;
+}
+
+/* Sequential delay for cards */
+.col-lg-3:nth-child(1) .card { animation-delay: 0.1s; }
+.col-lg-3:nth-child(2) .card { animation-delay: 0.2s; }
+.col-lg-3:nth-child(3) .card { animation-delay: 0.3s; }
+.col-lg-3:nth-child(4) .card { animation-delay: 0.4s; }
