@@ -68,7 +68,7 @@
                             <h6><strong>Tracking No:</strong></h6>
                             <p class="text-muted">{{ $courier->tracking_no }}</p>
                         </div>
-                        <div class="col-6 text-end">
+                        <div class="col-6 text-end">                   
                             <h6><strong>Status:</strong></h6>
                             <span class="badge bg-warning text-dark">{{ $courier->status }}</span>
                         </div>
@@ -86,9 +86,9 @@
                     </div>
                     
                     <div class="mt-4 no-print text-center">
-                        <button onclick="window.print()" class="btn btn-dark btn-lg">
-                            <i class="fas fa-print"></i> Print Receipt
-                        </button>
+                    <button onclick="generatePrintWindow()" class="btn btn-dark btn-lg">
+    <i class="fas fa-print"></i> Generate & Print Receipt
+</button>
                     </div>
                 </div>
             </div>
@@ -96,4 +96,56 @@
         </div>
     </div>
 </div>
+
+<script>
+  function generatePrintWindow() {
+    // Pehle data ko variables mein save karlo
+    var trackingNo = "{{ $courier->tracking_no }}";
+    var sender = "{{ $courier->sender_name }}";
+    var receiver = "{{ $courier->receiver_name }}";
+    var weight = "{{ $courier->weight }}";
+    var status = "{{ $courier->status }}";
+    var totalPrice = "{{ $courier->total_price }}"; // <--- Main check yahan hai
+
+    var printWindow = window.open('', '_blank', 'height=600,width=800');
+
+    var receiptContent = `
+        <html>
+        <head>
+            <title>Print Receipt</title>
+            <style>
+                body { font-family: 'Courier New', monospace; padding: 20px; text-align: left; }
+                .receipt-header { text-align: center; border-bottom: 2px dashed #000; padding-bottom: 10px; }
+                .total { font-size: 22px; font-weight: bold; margin-top: 20px; border-top: 1px solid #000; padding-top: 10px; }
+            </style>
+        </head>
+        <body>
+            <div class="receipt-header">
+                <h1>COURIER RECEIPT</h1>
+                <p>Tracking ID: <strong>${trackingNo}</strong></p>
+            </div>
+            <div style="margin-top:20px;">
+                <p><strong>Sender:</strong> ${sender}</p>
+                <p><strong>Receiver:</strong> ${receiver}</p>
+                <p><strong>Weight:</strong> ${weight} KG</p>
+                <p><strong>Status:</strong> ${status}</p>
+            </div>
+            <div class="total">
+                Total Amount: Rs. ${totalPrice}
+            </div>
+            <p style="text-align:center; margin-top:40px;">--- Thank You ---</p>
+        </body>
+        </html>
+    `;
+
+    printWindow.document.write(receiptContent);
+    printWindow.document.close();
+    
+    printWindow.onload = function() {
+        printWindow.focus();
+        printWindow.print();
+        printWindow.close();
+    };
+}
+</script>
 @endsection

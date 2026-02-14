@@ -24,7 +24,7 @@
         <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
           <div class="service-item position-relative">
             <div class="icon"><i class="fa-solid fa-plane-departure"></i></div>
-            <h3>International Freight</h3>
+            <h3>International </h3>
             <p>Expanding your business globally with our fast and secure international air cargo services.</p>
           </div>
         </div>

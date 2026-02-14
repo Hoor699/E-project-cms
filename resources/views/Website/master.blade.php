@@ -52,7 +52,7 @@
     <ul>
         <li><a href="{{ route('home') }}" class="{{ Request::is('/') ? 'active' : '' }}">Home</a></li>
         <li><a href="{{ route('about') }}">About</a></li>
-        <li><a href="{{ route('services') }}">Services</a></li>
+        <!-- <li><a href="{{ route('services') }}">Services</a></li> -->
         <li><a href="{{ route('contact') }}" class="{{ Request::is('contact') ? 'active' : '' }}">Contact</a></li>
 
         {{-- Authentication Check --}}
@@ -64,14 +64,14 @@
             <li><a href="{{ route('user.register') }}">Register</a></li>
         @endif
 
-        <li><a href="{{ route('user.track') }}">Track Order</a></li>
+        <li><a href="{{ route('home') }}">Track Order</a></li>
 
         <li class="dropdown">
-            <a href="#"><span>More Links</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
+            <a href="#"><span>details</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
             <ul>
-                <li><a href="{{ route('about') }}">Our Team</a></li>
+         
                 <li><a href="{{ route('pricing') }}">Pricing Plans</a></li>
-                <li><a href="{{ route('service.details') }}">Service Details</a></li>
+                
             </ul>
         </li>
     </ul>

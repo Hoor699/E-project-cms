@@ -8,6 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class Agent extends Model
 {
     use HasFactory;
-    protected $fillable = ['name', 'email', 'phone', 'city'];
+    protected $fillable = [ 'user_id','name', 'email', 'phone', 'city'];
     
 }

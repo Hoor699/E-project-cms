@@ -12,11 +12,14 @@ class AddAgentIdToCouriersTable extends Migration
      * @return void
      */
     public function up()
-    {
-        Schema::table('couriers', function (Blueprint $table) {
-            $table->unsignedBigInteger('agent_id')->nullable()->after('status');
-        });
-    }
+{
+    Schema::table('couriers', function (Blueprint $table) {
+        $table->unsignedBigInteger('agent_id')->nullable()->after('status');
+        
+        // Yeh line relationship pakka kar degi
+        $table->foreign('agent_id')->references('id')->on('users')->onDelete('cascade');
+    });
+}
 
     /**
      * Reverse the migrations.

@@ -18,14 +18,21 @@ class UserAuthController extends Controller
     }
 
     // --- YE NAYA FUNCTION HAI JO ERROR KHATAM KAREGA ---
-    public function customerList()
-    {
-        // Auth::user()->email se sirf Ajwa ka data uthayenge
-        // Agar aapke model ka naam 'Courier' hai toh wahi use karein
-        $customers = Courier::where('sender_email', Auth::user()->email)->get();
-        
-        return view('user.customer_list', compact('customers'));
+public function customerList()
+{
+    $user = Auth::user();
+
+    // Agar login wala banda Agent hai, toh saare couriers dikhao
+    if ($user->role == 'agent') {
+        $customers = Courier::all(); 
+    } 
+    // Agar normal user hai, toh sirf uski apni bookings
+    else {
+        $customers = Courier::where('sender_email', $user->email)->get();
     }
+
+    return view('user.customer_list', compact('customers'));
+}
 
     public function showRegister()
     {
@@ -106,7 +113,8 @@ class UserAuthController extends Controller
         'name' => 'required',
         'email' => 'required|email|unique:users',
         'password' => 'required|min:6',
-        'role' => 'required' // admin ya agent
+        'role' => 'required' ,// admin ya agent
+        'city' => 'nullable' // City add karein
     ]);
 
     // Naya user create karna
@@ -114,9 +122,33 @@ class UserAuthController extends Controller
         'name' => $request->name,
         'email' => $request->email,
         'password' => Hash::make($request->password),
-        'role' => $request->role, 
+        'role' => $request->role,
+        'city' => $request->city, // City save karna zaroori hai agent ke liye 
+        
     ]);
 
     return back()->with('success', 'Naya ' . $request->role . ' kamyabi se add ho gaya!');
+}
+public function editStatus($id)
+{
+    // Sirf wahi courier uthayenge jo update karna hai
+    $courier = Courier::findOrFail($id);
+    
+    // Aapki file ka path yahan check karein
+    return view('user.agent_edit', compact('courier'));
+}
+
+public function updateStatus(Request $request, $id)
+{
+    $request->validate([
+        'status' => 'required'
+    ]);
+
+    $courier = Courier::findOrFail($id);
+    $courier->update([
+        'status' => $request->status
+    ]);
+
+    return redirect()->route('user.customer.list')->with('success', 'Status kamyabi se update ho gaya!');
 }
 }

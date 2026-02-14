@@ -75,13 +75,13 @@
             <img src="{{ asset('frontend/logis/assets/img/about.jpg') }}" class="img-fluid rounded shadow" alt="About ServiceFlow">
           </div>
           <div class="col-lg-6 content order-last order-lg-first" data-aos="fade-up">
-            <h3>Bridging Distances with Technology</h3>
+            <h3> Distances with Technology</h3>
             <p>
               ServiceFlow is a state-of-the-art courier management system designed to make logistics simple, transparent, and accessible for everyone.
             </p>
             <ul>
               <li><i class="bi bi-check-all text-primary"></i> <span><strong>Automated Tracking:</strong> Real-time updates at your fingertips.</span></li>
-              <li><i class="bi bi-check-all text-primary"></i> <span><strong>Global Coverage:</strong> Seamlessly shipping to over 200+ countries.</span></li>
+
               <li><i class="bi bi-check-all text-primary"></i> <span><strong>Eco-Friendly:</strong> Optimized routes to reduce carbon footprint.</span></li>
             </ul>
             <p class="italic">"We don't just deliver packages; we deliver peace of mind."</p>

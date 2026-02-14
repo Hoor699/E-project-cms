@@ -37,9 +37,9 @@
                         <div class="col-md-6 mb-3">
                             <label class="text-white fw-bold">From City</label>
                             <select name="from_city" class="form-select">
-                                <option value="Karachi" {{ $courier->from_city == 'Karachi' ? 'selected' : '' }}>Karachi</option>
-                                <option value="Lahore" {{ $courier->from_city == 'Lahore' ? 'selected' : '' }}>Lahore</option>
-                                <option value="Islamabad" {{ $courier->from_city == 'Islamabad' ? 'selected' : '' }}>Islamabad</option>
+                                <option value="Karachi" {{ $courier->from_city == 'karachi' ? 'selected' : '' }}>Karachi</option>
+                                <option value="Lahore" {{ $courier->from_city == 'lahore' ? 'selected' : '' }}>Lahore</option>
+                                <option value="Islamabad" {{ $courier->from_city == 'islamabad' ? 'selected' : '' }}>Islamabad</option>
                             </select>
                         </div>
                         <div class="col-md-6 mb-3">
@@ -53,15 +53,15 @@
                     </div>
 
                     <div class="row">
-                         <div class="col-md-6 mb-3">
-                            <label class="text-white fw-bold">weight</label>
+                         <div class="col-md-4 mb-3">
+                            <label class="text-white fw-bold">Weight</label>
                             <input type="number" name="weight" class="form-control" value="{{ $courier->weight }}" required>
                         </div>
-                        <div class="col-md-6 mb-3">
+                        <div class="col-md-4 mb-3">
                             <label class="text-white fw-bold">Price (PKR)</label>
                             <input type="number" name="price" class="form-control" value="{{ $courier->price }}" required>
                         </div>
-                        <div class="col-md-6 mb-3">
+                        <div class="col-md-4 mb-3">
                             <label class="text-white fw-bold">Status</label>
                             <select name="status" class="form-select">
                                 <option value="Pending" {{ $courier->status == 'Pending' ? 'selected' : '' }}>Pending</option>
@@ -70,6 +70,21 @@
                             </select>
                         </div>
                     </div>
+
+                    <div class="row mt-2">
+                        <div class="col-md-12 mb-3">
+                            <label class="text-white fw-bold">Assign / Change Agent</label>
+                            <select name="agent_id" class="form-select bg-info text-dark fw-bold">
+                                <option value="" {{ is_null($courier->agent_id) ? 'selected' : '' }}>-- No Agent Assigned --</option>
+                                @foreach($agents as $agent)
+                                    <option value="{{ $agent->id }}" {{ $courier->agent_id == $agent->id ? 'selected' : '' }}>
+                                        {{ $agent->name }} ({{ $agent->city }})
+                                    </option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+
                 </div>
                 
                 <div class="card-footer border-top border-secondary">

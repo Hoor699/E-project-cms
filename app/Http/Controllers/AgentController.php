@@ -8,47 +8,59 @@ use App\Models\Courier;
 use Barryvdh\DomPDF\Facade\Pdf;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\DB;
 
 class AgentController extends Controller
 {
-    // 1. Agent banane ka Form dikhane ke liye
+    // ISKO WAPIS ADD KAREIN - Yeh form dikhane ke liye zaroori hai
     public function create()
     {
         return view('admin.agents.create'); 
     }
-
-    // 2. Form ka data Database mein save karne ke liye
 public function store(Request $request)
 {
-    // 1. Sab se pehle VALIDATION (Yeh lazmi hai)
+    // 1. Validation
     $request->validate([
         'name'     => 'required|string|max:255',
-        'email'    => 'required|email|unique:users,email', // Check ke email users table mein pehle se na ho
+        'email'    => 'required|email|unique:users,email|unique:agents,email', 
         'password' => 'required|min:6',
         'role'     => 'required',
         'phone'    => 'required',
         'city'     => 'required',
     ]);
 
-    // 2. User Table mein entry (Login account banane ke liye)
-    $user = User::create([
-        'name'     => $request->name,
-        'email'    => $request->email,
-        'password' => Hash::make($request->password), // Password ko encrypt karna
-        'role'     => $request->role, 
-    ]);
+    try {
+        DB::beginTransaction();
 
-    // 3. Agent Table mein entry (Extra details ke liye)
-    Agent::create([
-        'user_id' => $user->id, // Dono tables ka talluq (Relationship) ban gaya
-        'name'    => $request->name,
-        'email'   => $request->email,
-        'phone'   => $request->phone,
-        'city'    => $request->city,
-    ]);
+        // 2. Pehle User Account banayein
+        $user = User::create([
+            'name'     => $request->name,
+            'email'    => $request->email,
+            'password' => Hash::make($request->password),
+            'role'     => $request->role, 
+        ]);
 
-    // 4. Redirect with Success Message
-    return redirect()->route('agent.index')->with('success', 'Agent and Login Account Created Successfully!');
+        // 3. Phir Agent Profile banayein (Variable name $agent hi rakha hai)
+        $agent = Agent::create([
+            'user_id' => $user->id, 
+            'name'    => $request->name,
+            'email'   => $request->email,
+            'phone'   => $request->phone,
+            'city'    => $request->city,
+        ]);
+
+        DB::commit();
+        
+        // Agar aap check karna chahte hain ke save hua ya nahi, toh niche wali line uncomment karein:
+        // dd('Success!', $agent); 
+
+        return redirect()->route('agent.index')->with('success', 'Agent Created Successfully!');
+
+    } catch (\Exception $e) {
+        DB::rollback();
+        // Agar koi error aaye toh wapis form par jaye aur error dikhaye
+        return back()->withErrors(['error' => 'Database Error: ' . $e->getMessage()])->withInput();
+    }
 }
     public function index()
 {

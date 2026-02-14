@@ -24,7 +24,7 @@
           <a href="https://www.youtube.com/watch?v=Y7f98aduVJ8" class="glightbox pulsating-play-btn"></a>
         </div>
         <div class="col-lg-6 content order-last order-lg-first" data-aos="fade-up" data-aos-delay="100">
-          <h3>Reliable Logistics & Global Solutions</h3>
+          <h3>OUR BUISNESS GOAL</h3>
           <p>
             ServiceFlow Logistics is a name built on trust and excellence. We don't just move packages; we deliver your promises across borders with utmost care.
           </p>
@@ -39,8 +39,8 @@
             <li>
               <i class="bi bi-globe"></i>
               <div>
-                <h5>Worldwide Reach</h5>
-                <p>While we have a strong presence in <b>Karachi, Lahore, and Islamabad</b>, we also provide seamless <b>International Shipping</b> to connect you with the world.</p>
+                <h5>city</h5>
+                <p>While we have a strong presence in <b>Karachi, Lahore, and Islamabad</b>, </p>
               </div>
             </li>
             <li>
@@ -56,17 +56,7 @@
     </div>
   </section>
 
-  <section class="section bg-light py-5">
-    <div class="container text-center" data-aos="zoom-in">
-        <h2 class="fw-bold">Your Trust, Our Priority</h2>
-        <p class="lead">ServiceFlow is more than just a delivery service; it's a partner you can rely on. Give us an opportunity to serve you and witness a world-class logistics experience.</p>
-        <div class="mt-4">
-            <span class="badge bg-primary p-2 m-1">Global Tracking</span>
-            <span class="badge bg-primary p-2 m-1">Verified Logistics Agents</span>
-            <span class="badge bg-primary p-2 m-1">24/7 Premium Support</span>
-        </div>
-    </div>
-  </section>
+  
 
   <section id="stats" class="stats section">
     <div class="container" data-aos="fade-up" data-aos-delay="100">

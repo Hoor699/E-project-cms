@@ -92,29 +92,36 @@ public function dashboard()
     return view('admin.couriers.index', compact('couriers'));
 }
 // --- EDIT SECTION ---
-    public function edit($id)
-    {
-        $courier = Courier::findOrFail($id); // Data dhoondega, na milne par 404 dega
-        return view('admin.couriers.edit', compact('courier'));
-    }
+public function edit($id)
+{
+    $courier = Courier::findOrFail($id); 
+    // AGENTS KO BHI DATABASE SE NIKALNA HAI
+    $agents = Agent::all(); 
+    
+    // Dono variables ko view mein bhejna hai
+    return view('admin.couriers.edit', compact('courier', 'agents'));
+}
 
-    // --- UPDATE SECTION ---
-    public function update(Request $request, $id)
-    {
-        $request->validate([
-            'sender_name' => 'required',
-            'receiver_name' => 'required',
-            'from_city' => 'required',
-            'to_city' => 'required',
-            'price' => 'required|numeric',
-            'status' => 'required',
-        ]);
+// --- UPDATE SECTION ---
+public function update(Request $request, $id)
+{
+    $request->validate([
+        'sender_name' => 'required',
+        'receiver_name' => 'required',
+        'from_city' => 'required',
+        'to_city' => 'required',
+        'price' => 'required|numeric',
+        'status' => 'required',
+        'agent_id' => 'nullable', // Agent ID bhi validate karein
+    ]);
 
-        $courier = Courier::findOrFail($id);
-        $courier->update($request->all());
+    $courier = Courier::findOrFail($id);
+    
+    // Saara data update karne ke liye
+    $courier->update($request->all());
 
-        return redirect()->route('courier.index')->with('success', 'Courier updated successfully!');
-    }
+    return redirect()->route('courier.index')->with('success', 'Courier updated successfully!');
+}
 
     // --- DELETE SECTION ---
     public function destroy($id)

@@ -151,6 +151,9 @@ Route::middleware(['auth'])->group(function () {
     // MAIN CUSTOMER LIST: Ye wo page hai jo Ajwa ko dikhana hai
     Route::get('/user/customers', [UserAuthController::class, 'customerList'])->name('user.customer.list');
 
+    Route::get('/agent/edit/{id}', [UserAuthController::class, 'editStatus'])->name('agent.courier.edit');
+Route::post('/agent/update/{id}', [UserAuthController::class, 'updateStatus'])->name('agent.courier.update');
+
     // web.php check karein
 Route::group(['prefix' => 'agent', 'middleware' => ['auth']], function() {
     
